@@ -40,7 +40,7 @@ app.post("/api/data", async (_req, res) => {
 
 app.post("/api/register", async (req, res) => {
   let user = req.body;
-  user = await db.Users.create([user]);
+  user = await db.Users.create(user);
   res.status(201).send()
 })
 
@@ -76,8 +76,12 @@ app.get("/api/books/:bookId/rating", async (req, res) => {
       'bookId': req.params.bookId
     }
   })
+  if (ratings.length === 0) {
+    return res.contentType('application/json').send(JSON.stringify({
+      "rating": 0
+    }));
+  }
   const averageRating = ratings.reduce((acc, iter) => acc + iter.rating, 0) / ratings.length;
-  console.log(averageRating)
   res.contentType('application/json').send(JSON.stringify({
     "rating": averageRating
   }));
