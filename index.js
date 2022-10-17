@@ -35,6 +35,37 @@ app.post("/api/data", async (_req, res) => {
   db.Books.bulkCreate(bookDetails);
   db.Authors.bulkCreate(authorDetails);
 
-  res.status(201);
+  res.status(201).send(bookDetails);
+});
+
+app.post("/api/register", async (req, res) => {
+  let user = req.body;
+  user = await db.Users.create([user]);
+  res.status(201).send()
+})
+
+app.get("/api/books", async (_req, res) => {
+  const bookDetails = await db.Books.findAll();
+  res.status(200);
   res.send(bookDetails);
+});
+
+app.get("/api/authors", async (_req, res) => {
+  const authorDetails = await db.Authors.findAll();
+  res.status(200).send(authorDetails);
+});
+
+app.patch("/api/books/:bookId", async (req, res) => {
+  const { username, rating } = req.body;
+  const userList = await db.Users.findAll({
+    where: {
+      'username': username,
+    }
+  });
+  if (userList.length !== 1) {
+    return res.status(400).send("Error");
+  }
+  const userId = userList[0].id;
+  await db.Ratings.create({'userId': userId, 'bookId': req.params.bookId, 'rating': rating});
+  res.status(204).send();
 });
