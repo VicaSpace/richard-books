@@ -69,3 +69,16 @@ app.patch("/api/books/:bookId", async (req, res) => {
   await db.Ratings.create({'userId': userId, 'bookId': req.params.bookId, 'rating': rating});
   res.status(204).send();
 });
+
+app.get("/api/books/:bookId/rating", async (req, res) => {
+  const ratings = await db.Ratings.findAll({
+    where: {
+      'bookId': req.params.bookId
+    }
+  })
+  const averageRating = ratings.reduce((acc, iter) => acc + iter.rating, 0) / ratings.length;
+  console.log(averageRating)
+  res.contentType('application/json').send(JSON.stringify({
+    "rating": averageRating
+  }));
+})
