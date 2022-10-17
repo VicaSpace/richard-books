@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
+    "test": "jest --coverage",
     "migration:up": "sequelize db:migrate",
     "migration:down": "sequelize db:migrate:undo:all"
   },

@@ -1,7 +1,7 @@
 const db = require('../../models')
 
 const getBooksService = async () => {
-  return await db.Books.findAll();
+  return await db.Books.findAll({ include: db.Authors });
 }
 
 const rateABookService = async (username, rating, bookId) => {
