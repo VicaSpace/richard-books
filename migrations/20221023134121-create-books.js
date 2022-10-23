@@ -15,6 +15,9 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      img: {
+        type: Sequelize.STRING
+      },
       noOfPages: {
         type: Sequelize.INTEGER
       },

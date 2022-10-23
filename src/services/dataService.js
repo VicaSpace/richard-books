@@ -9,7 +9,7 @@ const fetchDataService = async () => {
 
   for (let i = 0; i < books.data.length; ++i) {
     const bookDetail = await axios(`http://3.95.158.224:3000/api/book/${books.data[i].id}`)
-    bookDetails.push({ 'name': books.data[i].name, ...bookDetail.data })
+    bookDetails.push({ 'name': books.data[i].name, 'img':books.data[i].img, ...bookDetail.data })
     authorIds.add(bookDetail.data.authorId);
   }
 
