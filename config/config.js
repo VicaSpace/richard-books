@@ -1,7 +1,10 @@
-{
+const dotenv = require('dotenv');
+dotenv.config(); 
+
+module.exports = {
   "development": {
-    "username": "username",
-    "password": null,
+    "username": process.env.USERNAME,
+    "password": process.env.PASSWORD,
     "database": "postgres",
     "host": "127.0.0.1",
     "dialect": "postgres"
