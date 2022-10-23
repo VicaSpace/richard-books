@@ -1,9 +1,7 @@
-const db = require('../../models')
+const db = require('../../models');
 
-const registerService = async (user) => {
-  return await db.Users.create(user);
-}
+const registerService = async (user) => db.Users.create(user);
 
 module.exports = {
-  registerService
+  registerService,
 };

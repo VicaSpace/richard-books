@@ -1,9 +1,7 @@
-const db = require('../../models')
+const db = require('../../models');
 
-const getAuthorsService = async () => {
-  return await db.Authors.findAll();
-}
+const getAuthorsService = async () => db.Authors.findAll();
 
 module.exports = {
-  getAuthorsService
+  getAuthorsService,
 };

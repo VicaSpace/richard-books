@@ -1,11 +1,11 @@
-const { Router } = require ('express')
-const  { register } = require ('../controllers/register.js')
-const { logger } = require( '../middlewares/logger.js')
+const { Router } = require('express');
+const { register } = require('../controllers/register');
+const { logger } = require('../middlewares/logger');
 
-const router = Router()
+const router = Router();
 
-router.post('/', logger, register)
+router.post('/', logger, register);
 
 module.exports = {
-  registerRouter: router
-}
+  registerRouter: router,
+};

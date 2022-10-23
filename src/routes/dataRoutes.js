@@ -1,11 +1,11 @@
-const { Router } = require ('express')
-const  { fetchData } = require ('../controllers/data.js')
-const { logger } = require( '../middlewares/logger.js')
+const { Router } = require('express');
+const { fetchData } = require('../controllers/data');
+const { logger } = require('../middlewares/logger');
 
-const router = Router()
+const router = Router();
 
-router.post('/', logger, fetchData)
+router.post('/', logger, fetchData);
 
 module.exports = {
-  dataRouter: router
-}
+  dataRouter: router,
+};
