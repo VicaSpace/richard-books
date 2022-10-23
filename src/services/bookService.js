@@ -11,7 +11,7 @@ const rateABookService = async (username, rating, bookId) => {
     }
   });
   if (userList.length !== 1) {
-    return res.status(400).send("Error");
+    throw new Error();
   }
   const userId = userList[0].id;
   await db.Ratings.create({'userId': userId, 'bookId': bookId, 'rating': rating});

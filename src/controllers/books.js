@@ -7,9 +7,13 @@ const getBooks = async (req, res) => {
 }
 
 const rateABook = async (req, res) => {
-  const { username, rating } = req.body;
-  await rateABookService(username, rating, req.params.bookId);
-  res.status(204).send();
+  try {
+    const { username, rating } = req.body;
+    await rateABookService(username, rating, req.params.bookId);
+    res.status(204).send();
+  } catch (err) {
+    res.status(400).send({message: "Error"})
+  }
 }
 
 const getABookRating = async (req, res) => {
